@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Grid</title>
+    
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <nav class="product-filter">
+
+        <h1>Products</h1>
+    
+        <div class="sort">
+            <form class="collection-sort" action="/" method="POST">
+                {% csrf_token %}
+                <a href="{% url 'product_add' %}">Add a New Product</a>
+                <label>Sort by:</label>
+                <select id="sorty" name="sort">
+                    <option value="/">Featured</option>
+                    <option value="/AtoZ">A - Z</option>
+                    <option value="/LowtoHigh">Price: Low to High</option>
+                </select>
+                <button type="submit">Sort</button>
+            </form>
+    
+        </div>
+    
+    </nav>
+
+    <section class="products">
+
+        <!-- add django for loop here -->
+        {% for product in all_products%}
+        <div class="product-card">
+        <div class="product-image">
+            <img src="{{product.image}}" alt="product image" width="200" >
+        </div>
+        <div class="product-info">
+            <h5>{{product.title}}</h5>
+            <h5>Quantity {{product.quantity}}</h5>
+            <h6>${{product.price}}</h6>
+            <a href="{% url 'product_desc' product.id %}">Description</a>
+            <a href="{% url 'product_edit' product.id %}">Edit</a>
+        </div>
+        </div>
+        {% endfor %}
+    
+    </section>
+</body>
+</html>

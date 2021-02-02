@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{product.title}}</title>
+</head>
+<body>
+    <img src={{product.image}} alt="Product Img" width="200">
+    <h1>Title: {{product.title}}</h1>
+    <h3>Quantity: {{product.quantity}}</h3>
+    <h3>Price: ${{product.price}}</h3>
+    <h3>Description: {{product.desc}}</h3>
+
+    <a href="{% url 'product_edit' product.id %}">Edit</a>
+    <a href="{% url 'product_delete' product.id %}">Delete</a>
+    <a href="/">Back to Home</a>
+</body>
+</html>
