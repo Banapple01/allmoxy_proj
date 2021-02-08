@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Grid</title>
     
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
 </head>
 <body>
     <nav class="product-filter">
@@ -31,9 +31,8 @@
     
     </nav>
 
-    <section class="products">
+    <!-- <section class="products">
 
-        <!-- add django for loop here -->
         {% for product in all_products%}
         <div class="product-card">
         <div class="product-image">
@@ -49,6 +48,42 @@
         </div>
         {% endfor %}
     
-    </section>
+    </section> -->
+<hr>
+
+<div class="container">
+    <!-- <div class="well well-sm">
+        <strong>Products</strong>
+    </div> -->
+
+    <div class="grid">
+
+        <div class="content">
+            <ul class="rig columns-4">
+                {% for product in all_products%}
+                    <li>
+                        <img class="product-image" src="{{product.image}}" alt="Product Image">
+                        <h4>{{product.title}}</h4>
+                        <p>{{product.desc}}</p>
+                        <p>Quantity: {{product.quantity}}</p>
+                        <div class="price">${{product.price}}</div>
+                        <hr>
+                        <button class="btn btn-default btn-xs pull-right" type="button">
+                            <i class="fa fa-cart-arrow-down"></i> Add To Cart(Delete)
+                        </button>
+                        <button class="btn btn-default btn-xs pull-left" type="button">
+                            <a href="{% url 'product_desc' product.id %}"><i class="fa fa-eye"></i> Details</a>
+                        </button>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        
+    </div>
+
+</div>
+
+
 </body>
 </html>
